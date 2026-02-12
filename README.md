@@ -92,3 +92,5 @@ streamlit run app.py
    PEXELS_API_KEY = "your_key"
    ```
 
+AUTHOR,
+SAI BHASKAR NANDURI
