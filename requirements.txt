@@ -1,0 +1,6 @@
+streamlit
+requests
+google-genai
+edge-tts
+moviepy
+python-dotenv
