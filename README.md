@@ -1,6 +1,6 @@
 # 🎥 AI Video Generator
 
-An AI-powered video generation pipeline built with **Streamlit**. Enter a topic and the app automatically writes a script, generates a voiceover, downloads relevant visuals, and merges everything into a final video — all in one click.
+An AI-powered video generation pipeline built with **Streamlit**. Enter a topic and the app automatically writes a script, generates a voiceover, downloads relevant visuals, generates a thumbnail, and merges everything into a final video — all in one click.
 
 ## Features
 
@@ -8,12 +8,31 @@ An AI-powered video generation pipeline built with **Streamlit**. Enter a topic 
 - **Text-to-Speech** — Converts the script to a natural male voiceover using Edge TTS
 - **Auto Visuals** — Downloads royalty-free video clips and images from Pexels
 - **Video Merging** — Interleaves clips and images, syncs with audio, and exports the final video
+- **Auto Thumbnail** — Generates a YouTube-style thumbnail using a cinematic Pexels background image with bold topic text overlay
 - **Multi-User Support** — Each session gets an isolated cache directory, so multiple users can generate videos simultaneously without conflicts
 - **Auto Cleanup** — Stale session caches are automatically deleted after 30 minutes
 
 ## ⚠️ Note on Visuals
 
 This app uses the **Pexels API** to fetch royalty-free images and video clips. Since Pexels is a community-driven stock media platform, **it may not have relevant or accurate visuals for every topic**. For niche, highly specific, or trending topics, the downloaded images and clips might not closely match the subject. The generated video will still be produced, but the visuals may be generic or loosely related.
+
+## Pipeline Flow
+
+```
+Topic Input
+    ↓
+Step 1: Script Generation (Gemini AI)
+    ↓
+Step 2: Voice Generation (Edge TTS)
+    ↓
+Step 3: Visual Download (Pexels API)
+    ↓
+Step 4: Video Merge (MoviePy + FFmpeg)
+    ↓
+Step 5: Thumbnail Generation (Pillow + Pexels)
+    ↓
+Final Output: Video + Thumbnail (side by side)
+```
 
 ## Tech Stack
 
@@ -24,6 +43,7 @@ This app uses the **Pexels API** to fetch royalty-free images and video clips. S
 | Voice Generation | Edge TTS |
 | Visuals | Pexels API (royalty-free) |
 | Video Processing | MoviePy + FFmpeg |
+| Thumbnail | Pillow + Pexels API |
 
 ## Setup
 
@@ -70,14 +90,15 @@ streamlit run app.py
 ## Project Structure
 
 ```
-├── app.py                 # Streamlit UI and pipeline orchestration
-├── script_generator.py    # AI script generation using Gemini
-├── voice_generator.py     # Text-to-speech using Edge TTS
-├── visuals.py             # Image and video download from Pexels
-├── video_merge.py         # Video merging and encoding with MoviePy
-├── requirements.txt       # Python dependencies
-├── .env                   # API keys (not committed)
-└── .gitignore             # Git ignore rules
+├── app.py                    # Streamlit UI and pipeline orchestration
+├── script_generator.py       # AI script generation using Gemini
+├── voice_generator.py        # Text-to-speech using Edge TTS
+├── visuals.py                # Image and video download from Pexels
+├── video_merge.py            # Video merging and encoding with MoviePy
+├── thumbnail_generator.py    # Auto thumbnail generation using Pillow + Pexels
+├── requirements.txt          # Python dependencies
+├── .env                      # API keys (not committed)
+└── .gitignore                # Git ignore rules
 ```
 
 ## Deployment (Streamlit Cloud)
@@ -92,5 +113,6 @@ streamlit run app.py
    PEXELS_API_KEY = "your_key"
    ```
 
-AUTHOR,
-SAI BHASKAR NANDURI
+## Author
+
+**Sai Bhaskar Nanduri**
