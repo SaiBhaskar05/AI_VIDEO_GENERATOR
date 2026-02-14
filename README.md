@@ -50,7 +50,7 @@ Final Output: Video + Thumbnail (side by side)
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/ai-video-generator.git
+git clone https://github.com/SaiBhaskar05/ai-video-generator.git
 cd ai-video-generator
 ```
 
